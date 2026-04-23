@@ -1,6 +1,7 @@
 ﻿using backend.Data;
 using backend.DTOs.User;
 using backend.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -8,16 +9,18 @@ using System.Text;
 
 namespace backend.Services
 {
-    public class UserService
+    public class UserService : IUserService
     {
         private readonly AppDbContext _context;
+        private readonly IConfiguration _config;
 
-        public UserService(AppDbContext context)
+        public UserService(AppDbContext context, IConfiguration config)
         {
             _context = context;
+            _config = config;
         }
 
-        public string Register(RegisterDto dto)
+        public async Task<string> RegisterAsync(RegisterDto dto)
         {
             var user = new User
             {
@@ -27,22 +30,24 @@ namespace backend.Services
                 Role = dto.Role,
                 IsApproved = false
             };
-            _context.Users.Add(user);
-            _context.SaveChanges();
+            await _context.Users.AddAsync(user);
+            await _context.SaveChangesAsync();
 
             return "Registered successfully";
         }
 
-        public string Login(LoginDto dto)
+        public async Task<string?> LoginAsync(LoginDto dto)
         {
-            var user = _context.Users
-                .FirstOrDefault(u => u.Email == dto.Email);
+            var user = await _context.Users
+                .FirstOrDefaultAsync(u => u.Email == dto.Email);
 
             if (user == null || !BCrypt.Net.BCrypt.Verify(dto.Password, user.Password))
                 return null;
+            if (!user.IsApproved)
+                return null;
 
             var tokenHandler = new JwtSecurityTokenHandler();    // for creating token
-            var key = Encoding.UTF8.GetBytes("supersecretkey123");  // nafs ely fe program.cs
+            var key = Encoding.UTF8.GetBytes(_config["Jwt:Key"]);  // nafs ely fe program.cs
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
@@ -63,23 +68,23 @@ namespace backend.Services
             return tokenHandler.WriteToken(token);    // return token as string
         }
 
-        public bool Approve(int id)
+        public async Task<bool> ApproveAsync(int id)
         {
-            var user = _context.Users.Find(id);
+            var user = await _context.Users.FindAsync(id);
             if (user == null) return false;
 
             user.IsApproved = true;
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return true;
         }
 
-        public bool Reject(int id)
+        public async Task<bool> RejectAsync(int id)
         {
-            var user = _context.Users.Find(id);
+            var user = await _context.Users.FindAsync(id);
             if (user == null) return false;
 
             _context.Users.Remove(user);
-            _context.SaveChanges();
+           await _context.SaveChangesAsync();
             return true;
         }
     }

@@ -9,25 +9,25 @@ namespace backend.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly UserService _service;
+        private readonly IUserService _service;
 
-        public AuthController(UserService service)
+        public AuthController(IUserService service)
         {
             _service = service;
         }
 
         [HttpPost("register")]
-        public IActionResult Register(RegisterDto dto)
+        public async Task<IActionResult> Register([FromBody]RegisterDto dto)
         {
-            var result = _service.Register(dto);
+            var result = await _service.RegisterAsync(dto);
             return Ok(result);
 
         }
 
         [HttpPost("login")]
-        public IActionResult Login(LoginDto dto)
+        public async Task<IActionResult> Login([FromBody]LoginDto dto)
         {
-            var token = _service.Login(dto);
+            var token = await _service.LoginAsync(dto);
             if (token == null)
                 return BadRequest("Invalid email or password or not approved");
 
@@ -36,24 +36,24 @@ namespace backend.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPut("approve/{id}")]
-        public IActionResult Approve(int id)
+        public async Task<IActionResult> Approve(int id)
         {
-            var result = _service.Approve(id);
+            var result = await _service.ApproveAsync(id);
 
             if (!result)
-                return NotFound();
+                return NotFound("User not found");
 
             return Ok("User approved");
         }
 
         [Authorize(Roles = "Admin")]
         [HttpDelete("reject/{id}")]
-        public IActionResult Reject(int id)
+        public async Task<IActionResult> Reject(int id)
         {
-            var result = _service.Reject(id);
+            var result = await _service.RejectAsync(id);
 
             if (!result)
-                return NotFound();
+                return NotFound("User not found");
 
             return Ok("User rejected");
         }
