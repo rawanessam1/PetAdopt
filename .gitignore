@@ -1,0 +1,17 @@
+# .NET
+bin/
+obj/
+
+# Node / React
+node_modules/
+dist/
+
+# Logs
+*.log
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
