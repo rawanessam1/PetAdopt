@@ -2,13 +2,10 @@
 
 namespace backend.Repositories
 {
-    public interface IPetRepository
+    public interface IPetRepository : IGenericRepository<Pet>
     {
-        List<Pet> GetAll();
-        Pet GetById(int id);
-        void Add(Pet pet);
-        void Update(Pet pet);
-        void Delete(Pet pet);
-        List<Pet> Search(string? type, string? location, string? breed, int? age);
+        Task<List<Pet>> SearchAsync(string? type, string? location, string? breed, int? age);
+        Task<List<Pet>> GetPendingPetsAsync();
+        Task<List<Pet>> GetAvailablePetsSortedByAgeAsync();
     }
 }

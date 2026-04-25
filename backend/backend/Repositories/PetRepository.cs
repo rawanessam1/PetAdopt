@@ -1,47 +1,30 @@
 ﻿using backend.Data;
 using backend.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace backend.Repositories
 {
-    public class PetRepository : IPetRepository
+    public class PetRepository : GenericRepository<Pet>, IPetRepository
     {
-        private readonly AppDbContext _context;
-
-        public PetRepository(AppDbContext context)
+        public PetRepository(AppDbContext context) : base(context)
         {
-            _context = context;
         }
 
-        public List<Pet> GetAll()
+        public new async Task<Pet> GetByIdAsync(int id)
         {
-            return _context.Pets.ToList();
+            return await _dbSet
+                .Include(p => p.Images)
+                .FirstOrDefaultAsync(p => p.Id == id); // mawgouda aw laa
         }
 
-        public Pet GetById(int id)
+        public new async Task<List<Pet>> GetAllAsync()
         {
-            return _context.Pets.FirstOrDefault(p => p.Id == id);
+            return await _dbSet.Include(p => p.Images).ToListAsync();
         }
 
-        public void Add(Pet pet)
+        public async Task<List<Pet>> SearchAsync(string? type, string? location, string? breed, int? age)
         {
-            _context.Pets.Add(pet);
-            _context.SaveChanges();
-        }
-
-        public void Update(Pet pet)
-        {
-            _context.Pets.Update(pet);
-            _context.SaveChanges();
-        }
-
-        public void Delete(Pet pet)
-        {
-            _context.Pets.Remove(pet);
-            _context.SaveChanges();
-        }
-        public List<Pet> Search(string? type, string? location,string? breed, int? age)
-        {
-            var query = _context.Pets.AsQueryable();
+            var query = _dbSet.Include(p => p.Images).AsQueryable();
 
             if (!string.IsNullOrEmpty(type))
                 query = query.Where(p => p.Type.ToLower() == type.ToLower());
@@ -55,8 +38,29 @@ namespace backend.Repositories
             if (age.HasValue)
                 query = query.Where(p => p.Age == age);
 
-            return query.ToList();
+            // ONLY return pets that the Admin has approved!
+            query = query.Where(p => p.Status == PetStatus.Available);
+
+            return await query.ToListAsync();
         }
 
+        public async Task<List<Pet>> GetPendingPetsAsync()
+        {
+            // CHANGED: Use the Enum
+            return await _dbSet
+                .Include(p => p.Images)
+                .Where(p => p.Status == PetStatus.PendingApproval)
+                .ToListAsync();
+        }
+
+        public async Task<List<Pet>> GetAvailablePetsSortedByAgeAsync()
+        {
+            // CHANGED: Use the Enum
+            return await _dbSet
+                .Include(p => p.Images)
+                .Where(p => p.Status == PetStatus.Available)
+                .OrderBy(p => p.Age)
+                .ToListAsync();
+        }
     }
 }

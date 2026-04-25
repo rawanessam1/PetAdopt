@@ -1,7 +1,7 @@
 ﻿using backend.Data;
 using backend.DTOs.User;
 using backend.Models;
-using Microsoft.EntityFrameworkCore;
+using backend.Repositories;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -11,12 +11,12 @@ namespace backend.Services
 {
     public class UserService : IUserService
     {
-        private readonly AppDbContext _context;
+        private readonly IUserRepository _repo;
         private readonly IConfiguration _config;
 
-        public UserService(AppDbContext context, IConfiguration config)
+        public UserService(IUserRepository repo, IConfiguration config)
         {
-            _context = context;
+            _repo = repo;
             _config = config;
         }
 
@@ -30,24 +30,22 @@ namespace backend.Services
                 Role = dto.Role,
                 IsApproved = false
             };
-            await _context.Users.AddAsync(user);
-            await _context.SaveChangesAsync();
-
+            await _repo.AddAsync(user);
             return "Registered successfully";
         }
 
         public async Task<string?> LoginAsync(LoginDto dto)
         {
-            var user = await _context.Users
-                .FirstOrDefaultAsync(u => u.Email == dto.Email);
+            var user = await _repo.GetByEmailAsync(dto.Email);
 
             if (user == null || !BCrypt.Net.BCrypt.Verify(dto.Password, user.Password))
                 return null;
+
             if (!user.IsApproved)
                 return null;
 
-            var tokenHandler = new JwtSecurityTokenHandler();    // for creating token
-            var key = Encoding.UTF8.GetBytes(_config["Jwt:Key"]);  // nafs ely fe program.cs
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.UTF8.GetBytes(_config["Jwt:Key"]);
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
@@ -65,26 +63,25 @@ namespace backend.Services
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
-            return tokenHandler.WriteToken(token);    // return token as string
+            return tokenHandler.WriteToken(token);
         }
 
         public async Task<bool> ApproveAsync(int id)
         {
-            var user = await _context.Users.FindAsync(id);
+            var user = await _repo.GetByIdAsync(id);
             if (user == null) return false;
 
             user.IsApproved = true;
-            await _context.SaveChangesAsync();
+            await _repo.UpdateAsync(user);
             return true;
         }
 
         public async Task<bool> RejectAsync(int id)
         {
-            var user = await _context.Users.FindAsync(id);
+            var user = await _repo.GetByIdAsync(id);
             if (user == null) return false;
 
-            _context.Users.Remove(user);
-           await _context.SaveChangesAsync();
+            await _repo.DeleteAsync(user);
             return true;
         }
     }

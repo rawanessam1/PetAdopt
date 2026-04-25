@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Diagnostics.HealthChecks;
-using backend.DTOs.Pet;
+﻿using backend.DTOs.Pet;
 using backend.Models;
 using backend.Repositories;
 
@@ -14,75 +13,109 @@ namespace backend.Services
             _repo = repo;
         }
 
-        public List<Pet> GetAll()
+        public async Task<List<Pet>> GetAllAsync()
         {
-            return _repo.GetAll();
+            return await _repo.GetAllAsync();
         }
 
-        public Pet GetById(int id)
+        public async Task<Pet> GetByIdAsync(int id)
         {
-            return _repo.GetById(id);
+            return await _repo.GetByIdAsync(id);
         }
 
-        public Pet Create(CreatePetDto dto, int ownerId)
+        public async Task<Pet> CreateAsync(CreatePetDto dto, int ownerId)
         {
             var pet = new Pet
             {
                 PetName = dto.PetName,
                 Age = dto.Age,
                 Type = dto.Type,
+                Breed = dto.Breed,
                 Gender = dto.Gender,
                 Description = dto.Description,
                 Location = dto.Location,
-                ImageUrl = dto.ImageUrl,
-                HealthStatus = dto.HealthStatus, 
+                HealthStatus = dto.HealthStatus,
                 OwnerId = ownerId,
-                Status = "Pending"
+                Status = PetStatus.PendingApproval,
+                Images = dto.ImageUrls.Select(url => new PetImage { Url = url }).ToList()
             };
 
-            _repo.Add(pet);
+            await _repo.AddAsync(pet);
             return pet;
         }
 
-        public bool Update(int id, UpdatePetDto dto, int ownerId)
+        public async Task<bool> UpdateAsync(int id, UpdatePetDto dto, int ownerId)
         {
-            var pet = _repo.GetById(id);
+            var pet = await _repo.GetByIdAsync(id);
             if (pet == null || pet.OwnerId != ownerId)
                 return false;
 
             pet.PetName = dto.PetName;
             pet.Age = dto.Age;
             pet.Type = dto.Type;
+            pet.Breed = dto.Breed;
             pet.Gender = dto.Gender;
             pet.Description = dto.Description;
             pet.Location = dto.Location;
-            pet.ImageUrl = dto.ImageUrl;
             pet.HealthStatus = dto.HealthStatus;
 
-            _repo.Update(pet);
+            pet.Images.Clear();
+            foreach (var url in dto.ImageUrls)
+            {
+                pet.Images.Add(new PetImage { Url = url });
+            }
+
+            await _repo.UpdateAsync(pet);
             return true;
         }
 
-        public bool Delete(int id, int ownerId)
+        public async Task<bool> DeleteAsync(int id, int ownerId)
         {
-            var pet = _repo.GetById(id);
+            var pet = await _repo.GetByIdAsync(id);
             if (pet == null || pet.OwnerId != ownerId)
                 return false;
 
-            _repo.Delete(pet);
+            await _repo.DeleteAsync(pet);
             return true;
         }
-        public List<Pet> Search(string? type, string? location,string?breed,int? age)
-        {
-            return _repo.Search(type, location,breed, age);
-        }
-        public bool RequestAdoption(int petId)
-        {
-            var pet = _repo.GetById(petId);
-            if (pet == null || pet.Status != "Available") return false;
 
-            pet.Status = "Pending"; // Change status as per requirements
-            _repo.Update(pet);
+        public async Task<List<Pet>> SearchAsync(string? type, string? location, string? breed, int? age)
+        {
+            return await _repo.SearchAsync(type, location, breed, age);
+        }
+
+        public async Task<bool> RequestAdoptionAsync(int petId)
+        {
+            var pet = await _repo.GetByIdAsync(petId);
+
+            if (pet == null || pet.Status != PetStatus.Available) return false;
+
+            pet.Status = PetStatus.AdoptionPending;
+            await _repo.UpdateAsync(pet);
+            return true;
+        }
+
+        public async Task<bool> ApprovePetAsync(int petId)
+        {
+            var pet = await _repo.GetByIdAsync(petId);
+
+            if (pet == null || pet.Status != PetStatus.PendingApproval)
+                return false;
+
+            pet.Status = PetStatus.Available;
+            await _repo.UpdateAsync(pet);
+            return true;
+        }
+
+        public async Task<bool> RejectPetAsync(int petId)
+        {
+            var pet = await _repo.GetByIdAsync(petId);
+
+            if (pet == null || pet.Status != PetStatus.PendingApproval)
+                return false;
+
+            pet.Status = PetStatus.Rejected;
+            await _repo.UpdateAsync(pet);
             return true;
         }
     }

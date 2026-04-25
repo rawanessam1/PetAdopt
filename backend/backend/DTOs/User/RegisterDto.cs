@@ -10,7 +10,9 @@ namespace backend.DTOs.User
         [EmailAddress]
         public string Email { get; set; }
         [Required]
+        [StringLength(50, MinimumLength = 8, ErrorMessage = "Password must be at least 8 characters long")]
         public string Password { get; set; }
+
         [Required]
         public string Role { get; set; }
     }
