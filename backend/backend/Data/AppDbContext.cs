@@ -11,6 +11,7 @@ namespace backend.Data
         public DbSet<Pet> Pets { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<PetImage> PetImages { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Pet>()
@@ -27,6 +28,10 @@ namespace backend.Data
 
             modelBuilder.Entity<Pet>()
                 .Property(p => p.Status)
+                .HasConversion<string>();
+
+            modelBuilder.Entity<User>()   // 3shan role teb2a string fe db msh 0,1,2
+                .Property(u => u.Role)
                 .HasConversion<string>();
         }
     }

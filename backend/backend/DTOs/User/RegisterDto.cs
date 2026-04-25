@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using backend.Models.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace backend.DTOs.User
 {
@@ -14,6 +15,6 @@ namespace backend.DTOs.User
         public string Password { get; set; }
 
         [Required]
-        public string Role { get; set; }
+        public UserRole Role { get; set; }
     }
 }

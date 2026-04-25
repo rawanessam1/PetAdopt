@@ -1,5 +1,6 @@
 ﻿using backend.DTOs.Pet;
 using backend.Models;
+using backend.Models.Enums;
 using backend.Repositories;
 
 namespace backend.Services

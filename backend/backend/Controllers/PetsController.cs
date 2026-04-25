@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using backend.DTOs.Pet;
+﻿using backend.DTOs.Pet;
 using backend.Services;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace backend.Controllers
 {
@@ -16,6 +17,7 @@ namespace backend.Controllers
             _service = service;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -23,6 +25,7 @@ namespace backend.Controllers
             return Ok(pets);
         }
 
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
@@ -31,6 +34,7 @@ namespace backend.Controllers
             return Ok(pet);
         }
 
+        [AllowAnonymous]
         [HttpGet("search")]
         public async Task<IActionResult> Search(string? type, string? location, string? breed, int? age)
         {
@@ -38,14 +42,16 @@ namespace backend.Controllers
             return Ok(result);
         }
 
+        [Authorize(Roles = "Shelter,PetOwner")]
         [HttpPost]
-        public async Task<IActionResult> Create(CreatePetDto dto)
+        public async Task<IActionResult> Create([FromBody] CreatePetDto dto)
         {
-            int ownerId = 1;
+            var ownerId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
             var pet = await _service.CreateAsync(dto, ownerId);
             return Ok(pet);
         }
 
+        [Authorize(Roles = "Adopter")]
         [HttpPost("{id}/adopt")]
         public async Task<IActionResult> Adopt(int id)
         {
@@ -54,10 +60,11 @@ namespace backend.Controllers
             return Ok("Adoption request submitted.");
         }
 
+        [Authorize(Roles = "Shelter,PetOwner")]
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, UpdatePetDto dto)
         {
-            int ownerId = 1;
+            var ownerId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
 
             var result = await _service.UpdateAsync(id, dto, ownerId);
             if (!result) return BadRequest("Not allowed");
@@ -65,10 +72,11 @@ namespace backend.Controllers
             return Ok("Updated");
         }
 
+        [Authorize(Roles = "Shelter,PetOwner")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            int ownerId = 1;
+            var ownerId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
 
             var result = await _service.DeleteAsync(id, ownerId);
             if (!result) return BadRequest("Not allowed");
@@ -76,6 +84,7 @@ namespace backend.Controllers
             return Ok("Deleted");
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id}/approve")]
         public async Task<IActionResult> Approve(int id)
         {
@@ -87,6 +96,7 @@ namespace backend.Controllers
             return Ok("Pet approved successfully. It is now publicly available.");
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id}/reject")]
         public async Task<IActionResult> Reject(int id)
         {

@@ -38,12 +38,18 @@ namespace backend.Services
         {
             var user = await _repo.GetByEmailAsync(dto.Email);
 
-            if (user == null || !BCrypt.Net.BCrypt.Verify(dto.Password, user.Password))
+            if (user == null)
+                return null;
+
+            if (string.IsNullOrEmpty(user.Password))
+                return null;
+
+            if (!BCrypt.Net.BCrypt.Verify(dto.Password, user.Password))
                 return null;
 
             if (!user.IsApproved)
                 return null;
-
+            Console.WriteLine("PASSWORD => " + user.Password);
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.UTF8.GetBytes(_config["Jwt:Key"]);
 
@@ -52,7 +58,7 @@ namespace backend.Services
                 Subject = new ClaimsIdentity(new[]
                 {
                     new Claim(ClaimTypes.Name, user.Name),
-                    new Claim(ClaimTypes.Role, user.Role),
+                    new Claim(ClaimTypes.Role, user.Role.ToString()),
                     new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
                 }),
                 Expires = DateTime.UtcNow.AddHours(2),

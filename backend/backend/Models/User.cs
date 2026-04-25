@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using backend.Models.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace backend.Models
 {
@@ -12,7 +13,7 @@ namespace backend.Models
         public string Email { get; set; }
 
         public string Password { get; set; }
-        public string Role { get; set; }
+        public UserRole Role { get; set; }
         public bool IsApproved { get; set; }
 
         public List<Pet> Pets { get; set; }
