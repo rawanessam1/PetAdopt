@@ -11,6 +11,9 @@ namespace backend.Data
         public DbSet<Pet> Pets { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<PetImage> PetImages { get; set; }
+        public DbSet<adoptionRequest> adoptionRequests { get; set; }
+        public DbSet<Favorite> Favorites { get; set; }
+        public DbSet<Review> Reviews { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

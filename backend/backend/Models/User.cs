@@ -17,5 +17,9 @@ namespace backend.Models
         public bool IsApproved { get; set; }
 
         public List<Pet> Pets { get; set; }
+
+        public List<adoptionRequest> adoptionRequests { get; set; }
+        public List<Favorite> Favorites { get; set; }
+        public List<Review> Reviews { get; set; }
     }
 }

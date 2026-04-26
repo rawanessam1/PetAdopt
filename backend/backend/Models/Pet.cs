@@ -25,5 +25,8 @@ namespace backend.Models
         public int OwnerId { get; set; } 
 
         public User user { get; set; }
+
+        public List<adoptionRequest> adoptionRequests { get; set; }
+        public List<Favorite> Favorites { get; set; }
     }
 }
