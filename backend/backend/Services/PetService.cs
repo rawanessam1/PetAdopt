@@ -85,16 +85,6 @@ namespace backend.Services
             return await _repo.SearchAsync(type, location, breed, age);
         }
 
-        public async Task<bool> RequestAdoptionAsync(int petId)
-        {
-            var pet = await _repo.GetByIdAsync(petId);
-
-            if (pet == null || pet.Status != PetStatus.Available) return false;
-
-            pet.Status = PetStatus.AdoptionPending;
-            await _repo.UpdateAsync(pet);
-            return true;
-        }
 
         public async Task<bool> ApprovePetAsync(int petId)
         {

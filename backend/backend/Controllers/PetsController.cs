@@ -51,15 +51,6 @@ namespace backend.Controllers
             return Ok(pet);
         }
 
-        [Authorize(Roles = "Adopter")]
-        [HttpPost("{id}/adopt")]
-        public async Task<IActionResult> Adopt(int id)
-        {
-            var success = await _service.RequestAdoptionAsync(id);
-            if (!success) return BadRequest("Pet is not available for adoption.");
-            return Ok("Adoption request submitted.");
-        }
-
         [Authorize(Roles = "Shelter,PetOwner")]
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, UpdatePetDto dto)

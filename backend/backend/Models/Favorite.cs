@@ -8,11 +8,11 @@ namespace backend.Models
         [Key]
         public int Id { get; set; }
 
-        [ForeignKey("User")]
+       // [ForeignKey("User")]
         public int UserId { get; set; }
         public User User { get; set; }
 
-        [ForeignKey("Pet")]
+       // [ForeignKey("Pet")]
         public int PetId { get; set; }
         public Pet Pet { get; set; }
     }

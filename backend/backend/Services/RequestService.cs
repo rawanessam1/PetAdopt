@@ -33,6 +33,10 @@ namespace backend.Services
             };
 
             await _requestRepo.AddAsync(request);
+
+            pet.Status = PetStatus.AdoptionPending;
+            await _petRepo.UpdateAsync(pet);
+
             return true;
         }
 

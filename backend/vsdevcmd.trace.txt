@@ -1,0 +1,256 @@
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>if "3" NEQ "" (
+ 
+ set  1>C:\Users\Rouna\AppData\Local\Temp\dd_vsdevcmd17_preinit_env.log 
+) 
+[DEBUG:VsDevCmd] Writing pre-initialization environment to C:\Users\Rouna\AppData\Local\Temp\dd_vsdevcmd17_preinit_env.log
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>if "3" GEQ "2" (
+ 
+ set 
+ 
+) 
+[DEBUG:VsDevCmd.bat] --------------------- VS Developer Command Prompt Environment [pre-init] ---------------------
+ALLUSERSPROFILE=C:\ProgramData
+APPDATA=C:\Users\Rouna\AppData\Roaming
+CASSANDRA_HOME=D:\apache-cassandra-5.0.6-bin.tar.gz\apache-cassandra-5.0.6
+ChocolateyInstall=C:\ProgramData\chocolatey
+ChocolateyLastPathUpdate=134204200832157080
+CommonProgramFiles=C:\Program Files\Common Files
+CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files
+CommonProgramW6432=C:\Program Files\Common Files
+COMPUTERNAME=DESKTOP-97303J7
+ComSpec=C:\WINDOWS\system32\cmd.exe
+DevEnvDir=C:\Visual8\Common7\IDE;
+DriverData=C:\Windows\System32\Drivers\DriverData
+EFC_9180_1592913036=1
+EXTERNAL_INCLUDE=C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um
+FPS_BROWSER_APP_PROFILE_STRING=Internet Explorer
+FPS_BROWSER_USER_PROFILE_STRING=Default
+Framework40Version=v4.0
+FrameworkDir=C:\Windows\Microsoft.NET\Framework\
+FrameworkDir32=C:\Windows\Microsoft.NET\Framework\
+FrameworkSDKDir=C:\Visual8\SDK\v2.0;
+FrameworkVersion=v4.0.30319
+FrameworkVersion32=v4.0.30319
+FSHARPINSTALLDIR=C:\Visual8;Common7\IDE\CommonExtensions\Microsoft\FSharp\Tools
+GCExpConfigUsedInSession=3
+GLOG_logbufsecs=0
+HADOOP_HOME=C:\Hadoop
+HOMEDRIVE=C:
+HOMEPATH=\Users\Rouna
+INCLUDE=C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um;C:\Visual8\VC\ATLMFC\INCLUDE;C:\Visual8\VC\INCLUDE;C:\Visual8\VC\PlatformSDK\inclu
+JAVA_HOME=C:\Program Files\Java\jdk-17
+LIB=C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\lib\um\x86;C:\Visual8\VC\ATLMFC\LIB;C:\Visual8\VC\LIB;C:\Visual8\VC\PlatformSDK\lib;C:\Visual8\SD
+LIBPATH=C:\Windows\Microsoft.NET\Framework\v4.0.30319;C:\Windows\Microsoft.NET\Framework\v2.0.50727;C:\Visual8\VC\ATLMFC\LIB
+LOCALAPPDATA=C:\Users\Rouna\AppData\Local
+LOGONSERVER=\\DESKTOP-97303J7
+MAVEN_HOME=C:\tools\apache-maven-3.9.5
+MSBuildLoadMicrosoftTargetsReadOnly=true
+NETFXSDKDir=C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\
+NetSamplePath=C:\Visual8\SDK\v2.0;
+NUMBER_OF_PROCESSORS=8
+OneDrive=C:\Users\Rouna\OneDrive
+OneDriveConsumer=C:\Users\Rouna\OneDrive
+OS=Windows_NT
+Path=C:\Visual8;MSBuild\Current\bin\Roslyn;C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\;C:\Visual8;Common7\IDE\CommonExtensions\Microsoft\FSharp\Tools;C:\Visual8;Team Tools\DiagnosticsHub\Collector;C:\Windows\Microsoft.NET\Framework\v4.0.30319;C:\Visual8\Common7\IDE;;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools\;C:\Program Files (x86)\VMware\VMware Workstation\bin\;C:\Users\Rouna\AppData\Local\Programs\Python\Python314\Scripts\;C:\Users\Rouna\AppData\Local\Programs\Python\Python314\;C:\oraclexe\app\oracle\product\11.2.0\server\bin;"C:\WINDOWS\system32;";"C:\WINDOWS\system32;";"C:\WINDOWS\System32\Wbem;";"C:\WINDOWS\System32\WindowsPowerShell\v1.0\;";C:\WINDOWS\System32\OpenSSH\;C:\Visual8\Common7\IDE;C:\Visual8\VC\BIN;C:\Program Files\Java\jdk-17\bin;C:\Visual8\Common7\Tools;C:\Visual8\Com;"C:\Visual8\Common7\IDE;C:\Visual8\VC\BIN;C:\Visual8\Common7\Tools;C:\Visual8\Com";C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Visual8\Common7\IDE;C:\Visual8\VC\BIN;C:\Visual8\Common7\Tools;C:\Visual8\Com;C:\msys64\ucrt64\bin;C:\Users\Rouna\AppData\Local\Programs\Python\Launcher\;C:\Users\Rouna\AppData\Local\Microsoft\WindowsApps;C:\Users\Rouna\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Rouna\AppData\Local\GitHubDesktop\bin;C:\Users\Rouna\.dotnet\tools;C:\Program Files\MongoDB\Server\8.2\bin;C:\Users\Rouna\AppData\Local\Programs\mongosh\;C:\Program Files\Docker\Docker\resources\bin;C:\Spark\bin;C:\Hadoop\bin;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\Microsoft SQL Server\160\DTS\Binn\;C:\Program Files\Git\cmd;D:\;C:\ProgramData\chocolatey\bin;C:\Program Files\dotnet\;C:\Users\Rouna\AppData\Local\Programs\Python\Launcher\;C:\Users\Rouna\AppData\Local\Microsoft\WindowsApps;C:\Users\Rouna\AppData\Local\Programs\Microsoft VS Code\bin;C:\msys64\ucrt64\bin;C:\Users\Rouna\AppData\Local\GitHubDesktop\bin;C:\Users\Rouna\.dotnet\tools;C:\Program Files\MongoDB\Server\8.2\bin;C:\Users\Rouna\AppData\Local\Programs\mongosh\;C:\Users\Rouna\AppData\Roaming\npm
+PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.PY;.PYW
+PkgDefApplicationConfigFile=C:\Users\Rouna\AppData\Local\Microsoft\VisualStudio\17.0_2cb39b55\devenv.exe.config
+PROCESSOR_ARCHITECTURE=AMD64
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 142 Stepping 10, GenuineIntel
+PROCESSOR_LEVEL=6
+PROCESSOR_REVISION=8e0a
+ProgramData=C:\ProgramData
+ProgramFiles=C:\Program Files
+ProgramFiles(x86)=C:\Program Files (x86)
+ProgramW6432=C:\Program Files
+PROMPT=$P$G
+PSModulePath=C:\Program Files\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules;C:\Program Files (x86)\Microsoft SQL Server\160\Tools\PowerShell\Modules\
+PUBLIC=C:\Users\Public
+ServiceHubHostServiceBrokerPipeName=\\.\pipe\32B634C5-65BB-4D9E-AA8F-887A6C38AC20
+ServiceHubLogSessionKey=017FD61B
+SESSIONNAME=Console
+SPARK_HOME=C:\Spark
+SystemDrive=C:
+SystemRoot=C:\WINDOWS
+TEMP=C:\Users\Rouna\AppData\Local\Temp
+ThreadedWaitDialogDpiContext=-4
+TMP=C:\Users\Rouna\AppData\Local\Temp
+USERDOMAIN=DESKTOP-97303J7
+USERDOMAIN_ROAMINGPROFILE=DESKTOP-97303J7
+USERNAME=Rouna
+USERPROFILE=C:\Users\Rouna
+VBOX_MSI_INSTALL_PATH=C:\Program Files\Oracle\VirtualBox\
+VCBUILD_DEFAULT_CFG=Debug^|Win32;
+VCBUILD_DEFAULT_OPTIONS=/useenv;
+VCINSTALLDIR=C:\Visual8\VC;
+VisualStudioDir=D:\OneDrive\Documents\Visual Studio 2022
+VisualStudioEdition=Microsoft Visual Studio Community 2022
+VisualStudioVersion=17.0
+VS170COMNTOOLS=C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools\
+VSAPPIDDIR=C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\
+VSAPPIDNAME=devenv.exe
+VSCMD_ARG_app_plat=Desktop
+VSCMD_ARG_HOST_ARCH=x86
+VSCMD_ARG_TGT_ARCH=x86
+VSCMD_DEBUG=3
+VSCMD_VER=17.14.12
+VSINSTALLDIR=C:\Visual8;
+VSLANG=1033
+VsPerMonitorDpiAwarenessEnabled.15132=TRUE
+VSSKUEDITION=Community
+VS_Perf_Session_GCHeapCount=2
+windir=C:\WINDOWS
+WindowsLibPath=References\CommonConfiguration\Neutral
+WindowsSDKLibVersion=winv6.3\
+WindowsSDKVersion=\
+WindowsSDK_ExecutablePath_x64=C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\x64\
+WindowsSDK_ExecutablePath_x86=C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\
+ZES_ENABLE_SYSMAN=1
+__DOTNET_ADD_32BIT=1
+__DOTNET_PREFERRED_BITNESS=32
+__VSCMD_PREINIT_INCLUDE=C:\Visual8\VC\ATLMFC\INCLUDE;C:\Visual8\VC\INCLUDE;C:\Visual8\VC\PlatformSDK\inclu
+__VSCMD_PREINIT_LIBPATH=C:\Windows\Microsoft.NET\Framework\v2.0.50727;C:\Visual8\VC\ATLMFC\LIB;
+__VSCMD_PREINIT_PATH=C:\Program Files (x86)\VMware\VMware Workstation\bin\;C:\Users\Rouna\AppData\Local\Programs\Python\Python314\Scripts\;C:\Users\Rouna\AppData\Local\Programs\Python\Python314\;C:\oraclexe\app\oracle\product\11.2.0\server\bin;"C:\WINDOWS\system32;";"C:\WINDOWS\system32;";"C:\WINDOWS\System32\Wbem;";"C:\WINDOWS\System32\WindowsPowerShell\v1.0\;";C:\WINDOWS\System32\OpenSSH\;C:\Visual8\Common7\IDE;C:\Visual8\VC\BIN;C:\Program Files\Java\jdk-17\bin;C:\Visual8\Common7\Tools;C:\Visual8\Com;"C:\Visual8\Common7\IDE;C:\Visual8\VC\BIN;C:\Visual8\Common7\Tools;C:\Visual8\Com";C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Visual8\Common7\IDE;C:\Visual8\VC\BIN;C:\Visual8\Common7\Tools;C:\Visual8\Com;C:\msys64\ucrt64\bin;C:\Users\Rouna\AppData\Local\Programs\Python\Launcher\;C:\Users\Rouna\AppData\Local\Microsoft\WindowsApps;C:\Users\Rouna\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Rouna\AppData\Local\GitHubDesktop\bin;C:\Users\Rouna\.dotnet\tools;C:\Program Files\MongoDB\Server\8.2\bin;C:\Users\Rouna\AppData\Local\Programs\mongosh\;C:\Program Files\Docker\Docker\resources\bin;C:\Spark\bin;C:\Hadoop\bin;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\Microsoft SQL Server\160\DTS\Binn\;C:\Program Files\Git\cmd;D:\;C:\ProgramData\chocolatey\bin;C:\Program Files\dotnet\;C:\Users\Rouna\AppData\Local\Programs\Python\Launcher\;C:\Users\Rouna\AppData\Local\Microsoft\WindowsApps;C:\Users\Rouna\AppData\Local\Programs\Microsoft VS Code\bin;C:\msys64\ucrt64\bin;C:\Users\Rouna\AppData\Local\GitHubDesktop\bin;C:\Users\Rouna\.dotnet\tools;C:\Program Files\MongoDB\Server\8.2\bin;C:\Users\Rouna\AppData\Local\Programs\mongosh\;C:\Users\Rouna\AppData\Roaming\npm
+[DEBUG:VsDevCmd.bat] --------------------- VS Developer Command Prompt Environment [pre-init] ---------------------
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>set __vscmd_vsdevcmd_errcount=0 
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>set "__VSCMD_ARGS_LIST=" 
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>call "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools\vsdevcmd\core\vsdevcmd_start.bat" 
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>if "3" GEQ "1" 
+[DEBUG:core\vsdevcmd_start] initializing with arguments ''
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>call "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools\vsdevcmd\core\parse_cmd.bat"  
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>if "3" GEQ "1" 
+[DEBUG:core\parse_cmd.bat] initializaing with arguments ''
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>if "" NEQ "" goto :clean_env 
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>set __local_parse_error=0 
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>if "3" GEQ "2" (
+ 
+  
+  
+  
+  
+  
+  
+  
+ 
+) 
+[DEBUG:parse_cmd] -no_ext : 
+[DEBUG:parse_cmd] -winsdk : 
+[DEBUG:parse_cmd] -app_platform : 
+[DEBUG:parse_cmd] -test   : 
+[DEBUG:parse_cmd] -help   : 
+[DEBUG:parse_cmd] -arch   : 
+[DEBUG:parse_cmd] -host_arch : 
+[DEBUG:parse_cmd] -vcvars_ver : 
+[DEBUG:parse_cmd] -startdir : 
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>set "VSCMD_ARG_help=" 
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>if "" NEQ "" goto :print_help 
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>goto :export_variables 
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>set VSCMD_TEST= 
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>if "" NEQ "" goto :end 
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>set "VSCMD_ARG_winsdk=" 
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>if NOT "" == "" (set "VSCMD_ARG_app_plat=" )  else (set "VSCMD_ARG_app_plat=Desktop" ) 
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>if "" NEQ "" (if "" == "amd64" (set "VSCMD_ARG_TGT_ARCH=x64" )  else (set "VSCMD_ARG_TGT_ARCH=" ) )  else (set "VSCMD_ARG_TGT_ARCH=x86" ) 
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>if "" NEQ "" (if "" == "amd64" (set "VSCMD_ARG_HOST_ARCH=x64" )  else (set "VSCMD_ARG_HOST_ARCH=" ) )  else (
+ 
+  
+ set "VSCMD_ARG_HOST_ARCH=x86" 
+) 
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>set "VSCMD_ARG_no_ext=" 
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>set "VSCMD_ARG_no_logo=" 
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>set "VSCMD_ARG_CLEAN_ENV=" 
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>set "__VSCMD_INTERNAL_INIT_STATE=export" 
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>if EXIST "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools\vsdevcmd\core\..\ext\vcvars.bat" call "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools\vsdevcmd\core\..\ext\vcvars.bat" 
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>set "__VSCMD_INTERNAL_INIT_STATE=" 
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>set "VSCMD_ARG_STARTDIR=" 
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>goto :end 
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>set __VSCMD_ARG_APP_PLAT= 
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>set __VSCMD_ARG_CLEAN_ENV= 
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>set __VSCMD_ARG_HELP= 
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>set __VSCMD_ARG_HOST_ARCH= 
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>set __VSCMD_ARG_NO_EXT= 
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>set __VSCMD_ARG_NO_LOGO= 
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>set __VSCMD_ARG_TEST= 
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>set __VSCMD_ARG_TGT_ARCH= 
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>set __VSCMD_ARG_WINSDK= 
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>set __VSCMD_ARG_STARTDIR= 
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>if "0" NEQ "0" (
+set __local_parse_error=  
+ exit /B 1 
+) 
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>set __local_parse_error= 
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>exit /B 0 
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>if "0" NEQ "0" set /A __vscmd_vsdevcmd_errcount=__vscmd_vsdevcmd_errcount+1 
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>if /I "" == "none" set "__VSCMD_CURRENT_DIR=C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools" 
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>if "3" GEQ "2" (
+ 
+  
+  
+ 
+) 
+[DEBUG:vsdevcmd_start] Parsing results...
+[DEBUG:vsdevcmd_start] -clean_env : 
+[DEBUG:vsdevcmd_start] -test      : 
+[DEBUG:vsdevcmd_start] -help      : 
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>if "" == "1" goto :end 
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>if "" NEQ "" (
+if "3" NEQ "" ()  
+  
+ set  1>C:\Users\Rouna\AppData\Local\Temp\test_dd_vsdevcmd17_env.log  
+  
+ setlocal 
+ if "" NEQ "" (
+ 
+ if "0" NEQ "" set /A __vscmd_vsdevcmd_errcount=__vscmd_vsdevcmd_errcount+1 
+)  
+ goto :end 
+) 
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>if "" NEQ "" goto :end 
+";"C:\WINDOWS\system32 was unexpected at this time.
+
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools>if "C:\Program Files (x86)\VMware\VMware Workstation\bin\;C:\Users\Rouna\AppData\Local\Programs\Python\Python314\Scripts\;C:\Users\Rouna\AppData\Local\Programs\Python\Python314\;C:\oraclexe\app\oracle\product\11.2.0\server\bin;"C:\WINDOWS\system32;";"C:\WINDOWS\system32;";"C:\WINDOWS\System32\Wbem;";"C:\WINDOWS\System32\WindowsPowerShell\v1.0\;";C:\WINDOWS\System32\OpenSSH\;C:\Visual8\Common7\IDE;C:\Visual8\VC\BIN;C:\Program Files\Java\jdk-17\bin;C:\Visual8\Common7\Tools;C:\Visual8\Com;"C:\Visual8\Common7\IDE;C:\Visual8\VC\BIN;C:\Visual8\Common7\Tools;C:\Visual8\Com";C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Visual8\Common7\IDE;C:\Visual8\VC\BIN;C:\Visual8\Common7\Tools;C:\Visual8\Com;C:\msys64\ucrt64\bin;C:\Users\Rouna\AppData\Local\Programs\Python\Launcher\;C:\Users\Rouna\AppData\Local\Microsoft\WindowsApps;C:\Users\Rouna\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Rouna\AppData\Local\GitHubDesktop\bin;C:\Users\Rouna\.dotnet\tools;C:\Program Files\MongoDB\Server\8.2\bin;C:\Users\Rouna\AppData\Local\Programs\mongosh\;C:\Program Files\Docker\Docker\resources\bin;C:\Spark\bin;C:\Hadoop\bin;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\Microsoft SQL Server\160\DTS\Binn\;C:\Program Files\Git\cmd;D:\;C:\ProgramData\chocolatey\bin;C:\Program Files\dotnet\;C:\Users\Rouna\AppData\Local\Programs\Python\Launcher\;C:\Users\Rouna\AppData\Local\Microsoft\WindowsApps;C:\Users\Rouna\AppData\Local\Programs\Microsoft VS Code\bin;C:\msys64\ucrt64\bin;C:\Users\Rouna\AppData\Local\GitHubDesktop\bin;C:\Users\Rouna\.dotnet\tools;C:\Program Files\MongoDB\Server\8.2\bin;C:\Users\Rouna\AppData\Local\Programs\mongosh\;C:\Users\Rouna\AppData\Roaming\npm"=="" (

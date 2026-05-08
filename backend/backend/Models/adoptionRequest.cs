@@ -13,7 +13,7 @@ namespace backend.Models
         public int PetId { get; set; }
         public Pet Pet { get; set; }
 
-        [ForeignKey("User")]
+       // [ForeignKey("User")]
         public int AdopterId { get; set; }
         public User Adopter { get; set; }
 

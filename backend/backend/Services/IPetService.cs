@@ -13,7 +13,6 @@ namespace backend.Services
         Task<bool> UpdateAsync(int id, UpdatePetDto dto, int ownerId);
         Task<bool> DeleteAsync(int id, int ownerId);
         Task<List<Pet>> SearchAsync(string? type, string? location, string? breed, int? age);
-        Task<bool> RequestAdoptionAsync(int petId);
 
         // ADMIN-ONLY METHODS
         Task<bool> ApprovePetAsync(int petId);

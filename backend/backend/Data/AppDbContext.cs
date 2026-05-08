@@ -17,6 +17,9 @@ namespace backend.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Pet>()
                 .HasOne(p => p.user)          
                 .WithMany(u => u.Pets)         
@@ -57,6 +60,40 @@ namespace backend.Data
                 .WithMany(u => u.ReviewsReceived)
                 .HasForeignKey(r => r.OwnerId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+
+            // favourites
+            modelBuilder.Entity<Favorite>()
+                .HasOne(f => f.Pet)
+                .WithMany(p => p.Favorites)
+                .HasForeignKey(f => f.PetId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Favorite>()
+                .HasOne(f => f.User)
+                .WithMany(u => u.Favorites)
+                .HasForeignKey(f => f.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+
+            // updates 
+            modelBuilder.Entity<adoptionRequest>()
+                .HasOne(a => a.Pet)
+                .WithMany(p => p.adoptionRequests)
+                .HasForeignKey(a => a.PetId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<adoptionRequest>()
+                .HasOne(a => a.Adopter)
+                .WithMany(u => u.adoptionRequests)
+                .HasForeignKey(a => a.AdopterId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Enum Conversions to Strings
+            modelBuilder.Entity<Pet>().Property(p => p.Status).HasConversion<string>();
+            modelBuilder.Entity<User>().Property(u => u.Role).HasConversion<string>();
+            modelBuilder.Entity<adoptionRequest>().Property(a => a.Status).HasConversion<string>();
+
         }
     }
 }
