@@ -30,6 +30,10 @@ builder.Services.AddScoped<IFavoriteRepository, FavoriteRepository>();
 builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
+// added these
+builder.Services.AddScoped<IRequestService, RequestService>();
+builder.Services.AddScoped<IReviewService, ReviewService>();
+builder.Services.AddScoped<IFavoriteService, FavoriteService>();
 
 // for JWT
 var key = Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]);

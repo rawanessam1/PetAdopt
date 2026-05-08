@@ -21,13 +21,20 @@ namespace backend.Data
                 .HasOne(p => p.user)          
                 .WithMany(u => u.Pets)         
                 .HasForeignKey(p => p.OwnerId)
-                .OnDelete(DeleteBehavior.Cascade); 
-
-            modelBuilder.Entity<PetImage>()
-                .HasOne(pi => pi.Pet)
-                .WithMany(p => p.Images)
-                .HasForeignKey(pi => pi.PetId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            /*   modelBuilder.Entity<PetImage>()
+                   .HasOne(pi => pi.Pet)
+                   .WithMany(p => p.Images)
+                   .HasForeignKey(pi => pi.PetId)
+                   .OnDelete(DeleteBehavior.Cascade);  */
+
+            // added this
+            modelBuilder.Entity<Pet>()
+                 .HasMany(p => p.Images)
+                 .WithOne()
+                 .HasForeignKey(pi => pi.PetId)
+                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Pet>()
                 .Property(p => p.Status)
@@ -36,6 +43,20 @@ namespace backend.Data
             modelBuilder.Entity<User>()   // 3shan role teb2a string fe db msh 0,1,2
                 .Property(u => u.Role)
                 .HasConversion<string>();
+
+
+            // added these for review
+            modelBuilder.Entity<Review>()
+                 .HasOne(r => r.Adopter)
+                 .WithMany(u => u.ReviewsGiven)
+                 .HasForeignKey(r => r.AdopterId)
+                 .OnDelete(DeleteBehavior.Restrict);
+  
+            modelBuilder.Entity<Review>()
+                .HasOne(r => r.Owner)
+                .WithMany(u => u.ReviewsReceived)
+                .HasForeignKey(r => r.OwnerId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace backend.DTOs.Pet
         public string HealthStatus { get; set; }
         public string Location { get; set; }
 
-        [Url(ErrorMessage = "Invalid URL format")]
+       // [Url(ErrorMessage = "Invalid URL format")]
         public List<string> ImageUrls { get; set; } = new List<string>();
     }
 }

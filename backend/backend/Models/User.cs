@@ -20,6 +20,10 @@ namespace backend.Models
 
         public List<adoptionRequest> adoptionRequests { get; set; }
         public List<Favorite> Favorites { get; set; }
-        public List<Review> Reviews { get; set; }
+
+        // public List<Review> Reviews { get; set; }
+
+        public List<Review> ReviewsGiven { get; set; }    
+        public List<Review> ReviewsReceived { get; set; }
     }
 }
