@@ -1,5 +1,5 @@
-﻿using backend.Models;
-using backend.Data;
+﻿using backend.Data;
+using backend.Models;
 using backend.Models.Enums;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,13 +26,19 @@ namespace backend.Repositories
                 .ToListAsync();
         }
 
+        public async Task<List<adoptionRequest>> GetByAdopterIdAsync(int adopterId)
+        {
+            return await _dbSet
+                .Include(r => r.Pet)
+                .Where(r => r.AdopterId == adopterId)
+                .ToListAsync();
+        }
+
         public new async Task<adoptionRequest> GetByIdAsync(int id)
         {
             return await _dbSet
                 .Include(r => r.Pet)
                 .FirstOrDefaultAsync(r => r.Id == id);
         }
-
-
     }
 }

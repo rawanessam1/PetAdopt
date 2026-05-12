@@ -1,6 +1,6 @@
-﻿using backend.Data;
-using backend.DTOs.User;
+﻿using backend.DTOs.User;
 using backend.Models;
+using backend.Models.Enums;
 using backend.Repositories;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -20,7 +20,7 @@ namespace backend.Services
             _config = config;
         }
 
-        public async Task<string> RegisterAsync(RegisterDto dto)
+        public async Task<User> RegisterAsync(RegisterDto dto)
         {
             var user = new User
             {
@@ -28,30 +28,22 @@ namespace backend.Services
                 Email = dto.Email,
                 Password = BCrypt.Net.BCrypt.HashPassword(dto.Password),
                 Role = dto.Role,
-                IsApproved = false
+                IsApproved = dto.Role == UserRole.Adopter
             };
             await _repo.AddAsync(user);
-            return "Registered successfully";
+            return user;
         }
 
         public async Task<string?> LoginAsync(LoginDto dto)
         {
             var user = await _repo.GetByEmailAsync(dto.Email);
+            if (user == null) return null;
+            if (string.IsNullOrEmpty(user.Password)) return null;
+            if (!BCrypt.Net.BCrypt.Verify(dto.Password, user.Password)) return null;
+            if (!user.IsApproved) return null;
 
-            if (user == null)
-                return null;
-
-            if (string.IsNullOrEmpty(user.Password))
-                return null;
-
-            if (!BCrypt.Net.BCrypt.Verify(dto.Password, user.Password))
-                return null;
-
-            if (!user.IsApproved)
-                return null;
-            Console.WriteLine("PASSWORD => " + user.Password);
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.UTF8.GetBytes(_config["Jwt:Key"]);
+            var key = Encoding.UTF8.GetBytes(_config["Jwt:Key"]!);
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
@@ -68,7 +60,6 @@ namespace backend.Services
             };
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
-
             return tokenHandler.WriteToken(token);
         }
 
@@ -76,7 +67,6 @@ namespace backend.Services
         {
             var user = await _repo.GetByIdAsync(id);
             if (user == null) return false;
-
             user.IsApproved = true;
             await _repo.UpdateAsync(user);
             return true;
@@ -86,9 +76,13 @@ namespace backend.Services
         {
             var user = await _repo.GetByIdAsync(id);
             if (user == null) return false;
-
             await _repo.DeleteAsync(user);
             return true;
+        }
+
+        public async Task<List<User>> GetPendingUsersAsync()
+        {
+            return await _repo.GetPendingUsersAsync();
         }
     }
 }

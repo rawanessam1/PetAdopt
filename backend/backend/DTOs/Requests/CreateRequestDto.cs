@@ -6,5 +6,7 @@ namespace backend.DTOs.Requests
     {
         [Required]
         public int PetId { get; set; }
+        public string? AdoptionHistory { get; set; } 
     }
+    
 }

@@ -6,5 +6,7 @@ namespace backend.Repositories
     {
         Task<List<adoptionRequest>> GetByOwnerIdAsync(int ownerId);
         Task<List<adoptionRequest>> GetByPetIdAsync(int petId);
+        Task<List<adoptionRequest>> GetByAdopterIdAsync(int adopterId);
+        new Task<adoptionRequest> GetByIdAsync(int id);
     }
 }

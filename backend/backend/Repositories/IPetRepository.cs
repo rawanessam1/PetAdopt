@@ -7,5 +7,6 @@ namespace backend.Repositories
         Task<List<Pet>> SearchAsync(string? type, string? location, string? breed, int? age);
         Task<List<Pet>> GetPendingPetsAsync();
         Task<List<Pet>> GetAvailablePetsSortedByAgeAsync();
+        Task<List<Pet>> GetByOwnerIdAsync(int ownerId);
     }
 }

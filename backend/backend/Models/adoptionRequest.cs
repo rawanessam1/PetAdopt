@@ -17,8 +17,9 @@ namespace backend.Models
         public int AdopterId { get; set; }
         public User Adopter { get; set; }
 
+        public string? AdoptionHistory { get; set; } 
+
         public RequestStatus Status { get; set; } = RequestStatus.Pending;
-        // Pending - Accepted - Rejected
 
         public DateTime CreatedAt { get; set; } = DateTime.Now;
     }

@@ -11,21 +11,28 @@ namespace backend.Repositories
         {
         }
 
+        public new async Task<List<Pet>> GetAllAsync()
+        {
+            return await _dbSet
+                .Include(p => p.Images)
+                .Include(p => p.user)
+                .ToListAsync();                    // ← Removed status filter
+        }
+
         public new async Task<Pet> GetByIdAsync(int id)
         {
             return await _dbSet
                 .Include(p => p.Images)
-                .FirstOrDefaultAsync(p => p.Id == id); // mawgouda aw laa
-        }
-
-        public new async Task<List<Pet>> GetAllAsync()
-        {
-            return await _dbSet.Include(p => p.Images).ToListAsync();
+                .Include(p => p.user)
+                .FirstOrDefaultAsync(p => p.Id == id);
         }
 
         public async Task<List<Pet>> SearchAsync(string? type, string? location, string? breed, int? age)
         {
-            var query = _dbSet.Include(p => p.Images).AsQueryable();
+            var query = _dbSet
+                .Include(p => p.Images)
+                .Include(p => p.user)
+                .AsQueryable();
 
             if (!string.IsNullOrEmpty(type))
                 query = query.Where(p => p.Type.ToLower() == type.ToLower());
@@ -39,15 +46,12 @@ namespace backend.Repositories
             if (age.HasValue)
                 query = query.Where(p => p.Age == age);
 
-            // ONLY return pets that the Admin has approved!
-            query = query.Where(p => p.Status == PetStatus.Available);
-
+            // Removed hard-coded Available filter here
             return await query.ToListAsync();
         }
 
         public async Task<List<Pet>> GetPendingPetsAsync()
         {
-            // CHANGED: Use the Enum
             return await _dbSet
                 .Include(p => p.Images)
                 .Where(p => p.Status == PetStatus.PendingApproval)
@@ -56,11 +60,18 @@ namespace backend.Repositories
 
         public async Task<List<Pet>> GetAvailablePetsSortedByAgeAsync()
         {
-            // CHANGED: Use the Enum
             return await _dbSet
                 .Include(p => p.Images)
                 .Where(p => p.Status == PetStatus.Available)
                 .OrderBy(p => p.Age)
+                .ToListAsync();
+        }
+
+        public async Task<List<Pet>> GetByOwnerIdAsync(int ownerId)
+        {
+            return await _dbSet
+                .Include(p => p.Images)
+                .Where(p => p.OwnerId == ownerId)
                 .ToListAsync();
         }
     }
